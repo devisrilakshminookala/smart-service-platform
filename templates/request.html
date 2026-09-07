@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Raise Service Request</title>
+</head>
+<body>
+
+    <h1>Raise Service Request</h1>
+
+    <form method="POST" action="/request">
+
+        <label>Request Title:</label>
+        <input type="text" name="title" required>
+        <br><br>
+
+        <label>Description:</label>
+        <br>
+        <textarea name="description" rows="5" cols="40" required></textarea>
+        <br><br>
+
+        <label>Category:</label>
+        <select name="category" required>
+            <option value="">Select Category</option>
+            <option value="IT Support">IT Support</option>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Plumbing">Plumbing</option>
+            <option value="Other">Other</option>
+        </select>
+        <br><br>
+
+        <label>Priority:</label>
+        <select name="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Critical">Critical</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Submit Request</button>
+
+    </form>
+
+</body>
+</html>

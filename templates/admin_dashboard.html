@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Smart Service Platform</title>
+</head>
+
+<body>
+
+    <h1>Admin Dashboard</h1>
+
+    <h2>Platform Overview</h2>
+
+    <p>Total Users: {{ total_users }}</p>
+    <p>Total Service Requests: {{ total_requests }}</p>
+    <p>Submitted: {{ submitted }}</p>
+    <p>In Progress: {{ in_progress }}</p>
+    <p>Resolved: {{ resolved }}</p>
+
+
+    <h2>All Service Requests</h2>
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Assigned Staff</th>
+            <th>Created At</th>
+            <th>Assign Staff</th>
+        </tr>
+
+
+        {% for req in requests %}
+
+        <tr>
+
+            <td>{{ req[0] }}</td>
+
+            <td>{{ req[1] }}</td>
+
+            <td>{{ req[2] }}</td>
+
+            <td>{{ req[4] }}</td>
+
+            <td>{{ req[5] }}</td>
+
+            <td>{{ req[6] }}</td>
+
+            <td>
+                {% if req[8] %}
+                    Staff ID: {{ req[8] }}
+                {% else %}
+                    Not Assigned
+                {% endif %}
+            </td>
+
+            <td>{{ req[7] }}</td>
+
+            <td>
+
+                <form method="POST"
+                      action="/assign-staff/{{ req[0] }}">
+
+                    <select name="staff_id" required>
+
+                        <option value="">
+                            Select Staff
+                        </option>
+
+                        {% for staff in staff_users %}
+
+                        <option value="{{ staff[0] }}"
+                            {% if req[8] == staff[0] %}
+                                selected
+                            {% endif %}>
+
+                            {{ staff[1] }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                    <button type="submit">
+                        Assign
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

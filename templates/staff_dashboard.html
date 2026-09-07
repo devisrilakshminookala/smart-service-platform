@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Staff Dashboard - Smart Service Platform</title>
+</head>
+<body>
+
+    <h1>Staff Dashboard</h1>
+
+    <h2>Welcome, Staff</h2>
+
+    <p>View your assigned service requests and update their status.</p>
+
+    <a href="/logout">Logout</a>
+
+    <br><br>
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Update Status</th>
+        </tr>
+
+        {% for req in requests %}
+
+        <tr>
+
+            <td>{{ req[0] }}</td>
+            <td>{{ req[1] }}</td>
+            <td>{{ req[2] }}</td>
+            <td>{{ req[3] }}</td>
+            <td>{{ req[4] }}</td>
+            <td>{{ req[5] }}</td>
+            <td>{{ req[6] }}</td>
+            <td>{{ req[7] }}</td>
+
+            <td>
+
+                <form method="POST"
+                      action="/update-status/{{ req[0] }}">
+
+                    <select name="status">
+
+                        <option value="Submitted"
+                            {% if req[6] == "Submitted" %}selected{% endif %}>
+                            Submitted
+                        </option>
+
+                        <option value="In Progress"
+                            {% if req[6] == "In Progress" %}selected{% endif %}>
+                            In Progress
+                        </option>
+
+                        <option value="Resolved"
+                            {% if req[6] == "Resolved" %}selected{% endif %}>
+                            Resolved
+                        </option>
+
+                    </select>
+
+                    <button type="submit">
+                        Update
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

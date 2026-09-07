@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Requests - Smart Service Platform</title>
+</head>
+<body>
+
+    <h1>My Service Requests</h1>
+
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Created At</th>
+        </tr>
+
+        {% for request in requests %}
+        <tr>
+            <td>{{ request[0] }}</td>
+            <td>{{ request[2] }}</td>
+            <td>{{ request[4] }}</td>
+            <td>{{ request[5] }}</td>
+            <td>{{ request[6] }}</td>
+            <td>{{ request[7] }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/dashboard">
+        <button>Back to Dashboard</button>
+    </a>
+
+</body>
+</html>
